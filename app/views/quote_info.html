@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quote info</title>
+	<link rel="stylesheet" href="/static/css/add.css" type="text/css">
+
+</head>
+<body>
+<div id="container">
+<div id="header">
+<p><a href="/main"> Dashboard </a> | <a href="/logout">Logout</a></p>
+</div>
+<div id="body">
+{% for info in quote_info %}
+<p>Posts by {{info['name']}}</p>
+<p>Count : {{info['count']}}</p>
+<p><span id= "red">{{info['quote_by']}}</span>: {{info['quote']}}</p>
+{% endfor %}
+</div>
+</div>
+</body>
+</html>

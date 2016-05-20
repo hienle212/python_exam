@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quote's Page</title>
+	<link rel="stylesheet" href="/static/css/quote.css" type="text/css">
+	<style type="text/css">
+
+
+	</style>
+</head>
+<body>
+<div id="container">
+<p id="header"><a href="/logout">Logout</a></p>
+<h1>Welcome, {{session['name']}} !</h1>
+<h2>Quotable Quotes</h2>
+<div id="leftbox">
+<fieldset>
+{% for quote in quotes %}
+{% if quote['favorite_userid'] != session['id'] %}
+	<div id="border">
+	<p>{{quote['quote']}}</p>
+	<p>Posted By <a href="/viewinfo/{{quote['poster_id']}}">{{quote['name']}}</a></p>
+	<form class="form1" action="/addquote" method="POST">
+	<input type="hidden" name="user_id" value="{{session['id']}}">
+	<input type="hidden" name="quote_id" value="{{quote['quotes_id']}}">	
+	<input type="submit" name="add" value="Add to My List">
+	</form>
+	</div>
+{% endif %}
+{% endfor %}
+</fieldset>
+</div>
+<div id="rightbox">
+<fieldset>
+	<legend>Your Favorites</legend>
+{% for quote in quotes %}
+{% if quote['favorite_userid'] == session['id'] %}
+	<div id="border">
+	<p>{{quote['quote']}}</p>
+	<p>Posted By <a href="/viewinfo/{{quote['poster_id']}}">{{quote['name']}}</a></p>
+	<form class="form2" action="/removequote" method="POST">
+	<input type="hidden" name="user_id" value="{{session['id']}}">
+	<input type="hidden" name="quote_id" value="{{quote['quotes_id']}}">		
+	<input type="submit" name="remove" value="Remove From My List">
+	</form>
+	</div>
+{% endif %}
+{% endfor %}	
+</fieldset>
+</div>
+<div id="form">
+	<h3>Contribute a Quote :</h3>
+{% with message = get_flashed_messages() %}
+  {% if message %}
+      {% for text in message %}
+        <p>{{text}}</p>
+      {% endfor %}
+  {% endif %}
+{% endwith %}
+	<form action="/createquote" method="POST">
+		Quoted By: <input type="text" name="quote_by"><br>
+		Message : <textarea name= "quote"></textarea><br>
+		<input type="hidden" name='users_id' value="{{session['id']}}">
+		<input id="button" type="submit" value="Submit">
+	</form>
+</div>
+</div>
+</html>

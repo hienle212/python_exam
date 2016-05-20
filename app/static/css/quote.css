@@ -1,0 +1,42 @@
+#container{
+	width:900px;
+}
+#rightbox{
+	display:inline-block;
+	width:350px;
+	height:250px;
+	border:2px solid black;
+	overflow:scroll;
+}
+#leftbox{
+	overflow: scroll;
+	display:inline-block;
+	width:300px;
+	height:400px;
+	border: 2px solid black;
+	vertical-align: top;
+}
+.table2 h1{
+	width:300px;
+	font-size: 30px;
+}
+#border{
+	border:1px solid black;
+}
+#form{
+	width:400px;
+	margin-left: 350px;
+}
+#header{
+	margin-left: 700px;
+}
+.form1{
+	margin-left: 200px;
+}
+.form2{
+	margin-left: 180px;
+}
+#button{
+		margin-left: 180px;
+		margin-top: 20px;
+		}
